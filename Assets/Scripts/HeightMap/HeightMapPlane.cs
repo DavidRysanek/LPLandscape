@@ -18,10 +18,7 @@ public class HeightMapPlane : MonoBehaviour
     public void GenerateMesh(int segmentCount, float segmentSize)
     {
         mesh = GetComponent<MeshFilter>().mesh;
-        if (mesh == null) {
-            Debug.LogError("No mesh on the selected object");
-            return;
-        }
+        Debug.Assert(mesh != null, "No mesh on the selected object");
 
         PlaneCreator.CreateVertices(mesh, segmentCount, segmentSize, .5f);
 		ResolveNoiseHeigth(mesh);
@@ -81,7 +78,7 @@ public class HeightMapPlane : MonoBehaviour
 		Color[] colors = new Color[vertexCount];
 
 		if (vertices.Length != colors.Length) {
-			Debug.LogError("Tried to colorise separated vertices but bumber of vertices != number of colours");
+			Debug.LogError("Tried to colorise separated vertices but number of vertices != number of colours");
 			return;
 		}
 

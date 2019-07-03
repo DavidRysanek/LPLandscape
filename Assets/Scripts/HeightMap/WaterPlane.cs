@@ -10,10 +10,7 @@ public class WaterPlane : MonoBehaviour
     public void GenerateMesh(int segmentCount, float segmentSize)
     {
         mesh = GetComponent<MeshFilter>().mesh;
-        if (mesh == null) {
-            Debug.LogError("No mesh on the selected object");
-            return;
-        }
+        Debug.Assert(mesh != null, "No mesh on the selected object");
 
         PlaneCreator.CreateVertices(mesh, segmentCount, segmentSize, .5f);
         mesh.RecalculateBounds();
