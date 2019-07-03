@@ -91,7 +91,7 @@ public class HeightMapManager : MonoBehaviour
     {
         INoise n1 = new CheckerBoardNoise();
         INoise n2 = new ExponentialSimplexNoiseGenerator(noise);
-        return new NoiseAdd(n1, n2, 0.2);
+        return new NoiseAdd(n1, n2, 0.3);
     }
 
     #endregion
