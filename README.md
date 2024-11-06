@@ -1,11 +1,11 @@
 # Low-Poly Landscape
-###### Low-poly procedurally generated terrain in Unity3D.
 
-My personal playground. Work in progress.
+Low-poly procedurally generated terrain in Unity3D (v6).
 
-Uses `Unity 2019.1.8f1`
+All meshes are procedurally generated and vertex coloured for stylized low-poly (flat-shaded) look.
 
-All meshes are procedurally generated and vertex coloured.
 Uses Simplex noise for terrain data (improved Perlin noise).
 
-![Screenshot](./screenshot.png)
+![Screenshot](./Media/screenshot_detail1.jpg)
+
+![Screenshot](./Media/screenshot_overview1.jpg)
