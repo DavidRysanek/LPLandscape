@@ -11,8 +11,13 @@ public class HeightMapManager : MonoBehaviour
 
     [SerializeField]
     GameObject heightMapTilePrefab;
-    private int tilesCount = 3;
+    [SerializeField]
+    private int tilesCountX = 2;
+    [SerializeField]
+    private int tilesCountZ = 2;
+    [SerializeField]
     private int tileSize = 100;
+    [SerializeField]
     private float waterLevel = -2;
 
     private List<GameObject> tileGOs = new List<GameObject>();
@@ -33,16 +38,24 @@ public class HeightMapManager : MonoBehaviour
 
     private void InstantiateTiles(INoise noiseGenerator)
     {
-        for (int i = 0; i < tilesCount; i++)
-        {
-            var tileGO = Instantiate(heightMapTilePrefab);
-            tileGO.transform.parent = transform;
-            tileGO.transform.position = new Vector3(0, 0, tileSize * i);
-            tileGOs.Add(tileGO);
+        int offsetX = (tilesCountX - 1) * tileSize / 2;
+        int offsetZ = (tilesCountZ - 1) * tileSize / 2;
 
-            var tile = tileGO.GetComponent<HeightMapTile>();
-            tile.Init(noiseGenerator);
-        }
+        for (int x = 0; x < tilesCountX; x++)
+        {
+            for (int z = 0; z < tilesCountZ; z++)
+            {
+                var tileGO = Instantiate(heightMapTilePrefab);
+                tileGO.transform.parent = transform;
+                tileGO.transform.position = new Vector3(tileSize * x - offsetX, 0, tileSize * z - offsetZ);
+                tileGOs.Add(tileGO);
+
+                var tile = tileGO.GetComponent<HeightMapTile>();
+                tile.Init(noiseGenerator);
+            }
+    }
+
+        return;
     }
 
 
