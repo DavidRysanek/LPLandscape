@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using DRE.Noise;
@@ -33,21 +33,23 @@ public class HeightMapManager : MonoBehaviour
 
     private void InstantiateTiles(INoise noiseGenerator)
     {
-        for (int i = 0; i < tilesCount; i++) {
+        for (int i = 0; i < tilesCount; i++)
+        {
             var tileGO = Instantiate(heightMapTilePrefab);
             tileGO.transform.parent = transform;
             tileGO.transform.position = new Vector3(0, 0, tileSize * i);
             tileGOs.Add(tileGO);
 
             var tile = tileGO.GetComponent<HeightMapTile>();
-            tile.Init(noiseGenerator);            
+            tile.Init(noiseGenerator);
         }
     }
 
 
     private void GenerateTileMesh(int tileSize)
     {
-        for (int i = 0; i < tileGOs.Count; i++) {
+        for (int i = 0; i < tileGOs.Count; i++)
+        {
             tileGOs[i].GetComponent<HeightMapTile>().GenerateMesh(tileSize, 1);
         }
     }
@@ -55,7 +57,8 @@ public class HeightMapManager : MonoBehaviour
 
     private void SetWaterLevel(float waterLevel)
     {
-        for (int i = 0; i < tileGOs.Count; i++) {
+        for (int i = 0; i < tileGOs.Count; i++)
+        {
             tileGOs[i].GetComponent<HeightMapTile>().SetWaterLevel(waterLevel);
         }
     }
@@ -91,7 +94,7 @@ public class HeightMapManager : MonoBehaviour
     {
         INoise n1 = new CheckerBoardNoise();
         INoise n2 = new ExponentialSimplexNoiseGenerator(noise);
-        return new NoiseAdd(n1, n2, 0.3);
+        return new NoiseAdd(n1, n2, 0.2);
     }
 
     #endregion
